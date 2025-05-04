@@ -13,7 +13,7 @@ public:
         : name(n), health(h), attack(a), defense(d) {
         std::cout << "Character " << name << " created!\n";
     }
-
+    //
     ~Character() {
         std::cout << "Character " << name << " destroyed!\n";
     }

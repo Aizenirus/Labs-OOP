@@ -10,7 +10,6 @@ protected:
     std::string name;
     int health;
     int level;
-
 public:
     Entity(const std::string& name, int health, int level)
         : name(name), health(health), level(level) {}

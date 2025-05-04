@@ -24,7 +24,6 @@ public:
     InvalidInputException(const std::string& msg) : std::runtime_error(msg) {}
 };
 
-// Базовый класс пользователя
 class User {
 protected:
     std::string name;

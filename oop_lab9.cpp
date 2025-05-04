@@ -30,7 +30,6 @@ public:
             logFile.close();
         }
     }
-
     void log(const T& message) {
         time_t now = time(0);
         char* dt = ctime(&now);

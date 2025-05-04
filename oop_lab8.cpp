@@ -51,7 +51,6 @@ public:
             std::cerr << "Error: Invalid email format!" << std::endl;
         }
     }
-
     void setAddress(const std::string& newAddress) {
         if (!newAddress.empty()) {
             address = newAddress;

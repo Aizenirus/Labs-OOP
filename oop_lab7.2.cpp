@@ -80,7 +80,6 @@ public:
 
 vector<Monster> monsters;
 mutex monstersMutex;
-
 void generateMonsters() {
     random_device rd;
     mt19937 gen(rd());
