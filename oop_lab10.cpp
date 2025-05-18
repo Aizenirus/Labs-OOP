@@ -42,26 +42,21 @@ public:
         }
     }
 
-    virtual ~User() = default;
-
-    // Геттеры
+    // сво-ва
     std::string getName() const { return name; }
     int getId() const { return id; }
     int getAccessLevel() const { return accessLevel; }
 
-    // Виртуальный метод для вывода информации
     virtual void displayInfo() const {
         std::cout << "Имя: " << name
             << ", ID: " << id
             << ", Уровень доступа: " << accessLevel;
     }
 
-    // Виртуальный метод для сериализации
     virtual std::string serialize() const {
         return "User," + name + "," + std::to_string(id) + "," + std::to_string(accessLevel);
     }
 
-    // Виртуальный метод для десериализации
     virtual void deserialize(const std::string& data) {
         size_t pos1 = data.find(',');
         size_t pos2 = data.find(',', pos1 + 1);
@@ -71,9 +66,9 @@ public:
         id = std::stoi(data.substr(pos2 + 1, pos3 - pos2 - 1));
         accessLevel = std::stoi(data.substr(pos3 + 1));
     }
+    virtual ~User() = default;
 };
 
-// Класс студента
 class Student : public User {
 private:
     std::string group;
@@ -369,18 +364,18 @@ int main() {
     try {
         AccessControlSystem<Resource> acs;
 
-        acs.addUser(std::make_unique<Student>("Иван Иванов", 101, "ИТ-01"));
-        acs.addUser(std::make_unique<Teacher>("Елена Петрова", 102, "Математика"));
-        acs.addUser(std::make_unique<Administrator>("Сергей Смирнов", 103, "Администратор"));
+        acs.addUser(std::make_unique<Student>("Арсений Федюшин", 0, "Когтевран"));
+        acs.addUser(std::make_unique<Teacher>("Северус Снег", 1, "Тёмные искусства"));
+        acs.addUser(std::make_unique<Administrator>("Албус Дамбульдор", 2, "Директор"));
 
         acs.addResource(Resource("Библиотека", 1));
-        acs.addResource(Resource("Лаборатория", 2));
-        acs.addResource(Resource("Сервер", 3));
+        acs.addResource(Resource("Тайная комната", 2));
+        acs.addResource(Resource("Банк", 3));
 
         acs.printDataAsFileFormat();
 
-        acs.checkUserAccess(101, "Библиотека"); // Доступен
-        acs.checkUserAccess(101, "Сервер");     //исключение
+        acs.checkUserAccess(0, "Библиотека");       // Доступен
+        acs.checkUserAccess(0, "Тайная комната");   //исключение
 
     }
     catch (const AccessDeniedException& ex) {
